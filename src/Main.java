@@ -1,49 +1,52 @@
-abstract class Room{
-    protected int numBeds;
-    protected int sqFeet;
-    protected double pricePerNight;
+//Author : Joanna Jacob
+//version : 3.0
 
-    public Room(int numBeds, int sqFeet, double pricePerNight){
-        this.numBeds = numBeds;
-        this.sqFeet = sqFeet;
-        this.pricePerNight = pricePerNight;
+import java.util.HashMap;
+
+class RoomInventory {
+
+    HashMap<String, Integer> inventory;
+
+    RoomInventory() {
+        inventory = new HashMap<>();
+
+        inventory.put("Single", 5);
+        inventory.put("Double", 3);
+        inventory.put("Suite", 2);
     }
 
-    public void display(){
-        System.out.println("No. of beds : " + numBeds);
-        System.out.println("Sq. feet : " + sqFeet);
-        System.out.println("Price per Night : " + pricePerNight);
+    int getAvailability(String type) {
+        return inventory.get(type);
     }
-}
-class SingleRoom extends Room{
-    public SingleRoom(){
-        super(1, 250, 1500.0);
-    }
-}
 
-class DoubleRoom extends Room{
-    public DoubleRoom(){
-        super(2, 400, 2500.0);
+    void updateAvailability(String type, int count) {
+        inventory.put(type, count);
     }
-}
 
-class SuiteRoom extends Room{
-    public SuiteRoom(){
-        super(3, 750, 5000.0);
+    void displayInventory() {
+        for (String key : inventory.keySet()) {
+            System.out.println(key + " Available: " + inventory.get(key));
+        }
     }
 }
 
 public class Main {
-    public static void main(String[] args){
-        System.out.println("Hotel Room");
-        Room room = new SingleRoom();
-        System.out.println("\nSingle Room");
-        room.display();
-        Room room1 = new DoubleRoom();
-        System.out.println("\nDouble Room");
-        room1.display();
-        Room room2 = new SuiteRoom();
-        System.out.println("\nSuite Room:");
-        room2.display();
+
+    static String version = "Hotel Booking System v3.1";
+
+    public static void main(String[] args) {
+
+        System.out.println("Book My Stay");
+        System.out.println(version);
+
+        RoomInventory inv = new RoomInventory();
+
+        inv.displayInventory();
+
+        inv.updateAvailability("Single", 4);
+
+        System.out.println("After Update");
+
+        inv.displayInventory();
     }
 }
