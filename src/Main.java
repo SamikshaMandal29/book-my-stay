@@ -12,7 +12,7 @@ class DataStore12 implements Serializable {
 
         inventory = new HashMap<>();
 
-        inventory.put("Single", 2);
+        inventory.put("Single", 2);git remote set-url origin https://github.com/SamikshaMandal29/book-my-stay.git
         inventory.put("Double", 1);
     }
 }
